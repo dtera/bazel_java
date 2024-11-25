@@ -19,7 +19,7 @@ load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 def demo_deps():
     _rules_cc()
     _build_bazel_apple_support()
-    _com_github_libtom_libtommath()
+    _libtommath()
     _heu()
 
 def _rules_cc():
@@ -39,21 +39,20 @@ def _build_bazel_apple_support():
         url = "https://github.com/bazelbuild/apple_support/releases/download/1.17.1/apple_support.1.17.1.tar.gz",
     )
 
-def _com_github_libtom_libtommath():
+def _libtommath():
     maybe(
         http_archive,
-        name = "com_github_libtom_libtommath",
-        sha256 = "6c7a6732daeefda3826e6c5321d60d820655fb9f3f1a1f59049b0e7cab3c9079",
+        name = "libtommath",
+        sha256 = "7cfbdb64431129de4257e7d3349200fdbd4f229b470ff3417b30d0f39beed41f",
         type = "tar.gz",
-        strip_prefix = "libtommath-2e03dfd64dd7ae6bf0d43b665036da82e87f3fb2",
+        strip_prefix = "libtommath-42b3fb07e7d504f61a04c7fca12e996d76a25251",
         patch_args = ["-p1"],
         patches = [
             "//bazel:patches/libtommath.patch",
         ],
         urls = [
-            "https://github.com/libtom/libtommath/archive/2e03dfd64dd7ae6bf0d43b665036da82e87f3fb2.tar.gz",
+            "https://github.com/libtom/libtommath/archive/42b3fb07e7d504f61a04c7fca12e996d76a25251.tar.gz",
         ],
-        build_file = "//bazel:libtommath.BUILD",
     )
 
 def _heu():

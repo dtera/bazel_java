@@ -22,10 +22,10 @@ cc_library(
 
 cc_static_library(
     name = "phe_kit_all",
-    deps = [
-        ":phe_kit",
-        "@com_github_libtom_libtommath//:libtommath",
-    ],
+    deps = select({
+         "@platforms//os:macos": [":phe_kit"],
+         "//conditions:default": [":phe_kit", "@libtommath//:tommath"],
+    }),
 )
 
 cc_test(
